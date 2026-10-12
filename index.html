@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How Much You Drink 🍺</title>
+  <style>
+    :root {
+      --bg: #1b1408;
+      --card: #2a1f0e;
+      --accent: #f4b324;
+      --accent-dark: #c98a00;
+      --text: #fff8e7;
+      --muted: #c9b48a;
+      --danger: #e5533d;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    main { max-width: 560px; margin: 0 auto; padding: 24px 16px 48px; }
+    h1 { text-align: center; margin: 0 0 4px; font-size: 2rem; }
+    .subtitle { text-align: center; color: var(--muted); margin: 0 0 24px; }
+    .total {
+      background: var(--accent);
+      color: #2a1f0e;
+      border-radius: 16px;
+      padding: 16px;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .total .num { font-size: 3rem; font-weight: 800; line-height: 1; }
+    .total .label { font-weight: 600; }
+    form { display: flex; gap: 8px; margin-bottom: 20px; }
+    input[type="text"] {
+      flex: 1;
+      min-width: 0;
+      padding: 12px 14px;
+      font-size: 1rem;
+      border-radius: 12px;
+      border: 2px solid var(--card);
+      background: var(--card);
+      color: var(--text);
+    }
+    input[type="text"]:focus { outline: none; border-color: var(--accent); }
+    button {
+      font: inherit;
+      cursor: pointer;
+      border: none;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-weight: 700;
+    }
+    .btn-primary { background: var(--accent); color: #2a1f0e; }
+    .btn-primary:hover { background: var(--accent-dark); }
+    ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+    li {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .rank { width: 28px; text-align: center; font-size: 1.2rem; }
+    .info { flex: 1; min-width: 0; }
+    .name { font-weight: 700; font-size: 1.1rem; overflow-wrap: anywhere; }
+    .beers { color: var(--muted); font-size: 0.85rem; overflow-wrap: anywhere; }
+    .count { font-size: 1.8rem; font-weight: 800; min-width: 44px; text-align: center; }
+    .plus { background: var(--accent); color: #2a1f0e; font-size: 1.1rem; padding: 14px 16px; }
+    .plus:active { transform: scale(0.95); }
+    .small {
+      background: transparent;
+      color: var(--muted);
+      padding: 6px 8px;
+      font-size: 1rem;
+    }
+    .small:hover { color: var(--text); }
+    .small.del:hover { color: var(--danger); }
+    .empty { text-align: center; color: var(--muted); padding: 24px 0; }
+    .footer-actions { display: flex; justify-content: center; margin-top: 24px; }
+    .btn-reset { background: transparent; color: var(--danger); border: 2px solid var(--danger); }
+    .btn-reset:hover { background: var(--danger); color: var(--text); }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>🍺 How Much You Drink</h1>
+    <p class="subtitle">Tap +1 every time someone orders or drinks a beer.</p>
+
+    <div class="total">
+      <div class="num" id="total">0</div>
+      <div class="label">beers in total</div>
+    </div>
+
+    <form id="add-form">
+      <input type="text" id="name-input" placeholder="Add a person's name" maxlength="40" autocomplete="off" required>
+      <button type="submit" class="btn-primary">Add</button>
+    </form>
+
+    <ul id="people"></ul>
+    <p class="empty" id="empty">No one here yet. Add your drinking buddies above! 🍻</p>
+
+    <div class="footer-actions">
+      <button type="button" class="btn-reset" id="reset-btn" hidden>Reset all counts</button>
+    </div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
